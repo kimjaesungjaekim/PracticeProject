@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/layout}"
+    layout:fragment="content">
+
+<head>
+    <meta charset="UTF-8">
+    <title>상세보기</title>
+
+    <!--스크립트 목록-->
+    <script type="text/javascript" th:src="@{/js/app/board/boardDetail.js}"></script>
+
+
+    <style>
+        .table_css{
+            color:white;
+            background-color:skyblue;
+            text-align: center ;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800" th:text="${detail.boTitle}"></h1> 
+    </div>
+
+    
+    <div class="mb-3">
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
+            class="fas fa-download fa-sm text-white-50"></i> 좋아요</a>
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
+            class="fas fa-download fa-sm text-white-50"></i> 신고하기</a>
+    </div>
+
+    <table class="table card-table mb-3" border="1">
+        <colgroup>
+            <col width="25%" />
+            <col width="25%" />
+            <col width="25%" />
+            <col width="25%" />
+        </colgroup>
+        <tr>
+            <td colspan="1" class="table_css">작성자</td>
+            <td colspan="3" th:text="${detail.memId}"></td>
+        </tr>
+        <tr>
+            <td class="table_css">작성일</td>
+            <td th:text="${detail.boDate}"></td>
+            <td class="table_css">수정일</td>
+            <td th:text="${detail.boSetDate != null ? '${detail.boSetDate}' : '수정내역없음'}"></td>
+        </tr>
+        <tr>
+            <td class="table_css">조회수 </td>
+            <td th:text="${detail.boHit}"></td>
+            <td class="table_css">추천수</td>
+            <td th:text="${detail.boRcnt}"></td>
+        </tr>
+        <tr>
+            <td colspan="4" class="table_css">내용</td>
+        </tr>
+        <tr>
+            <td colspan="4" th:text="${detail.boContent}"></td> 
+        </tr>
+    </table>
+
+    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+        class="fas fa-download fa-sm text-white-50"></i> 수정하기</a>
+    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+        class="fas fa-download fa-sm text-white-50"></i> 삭제하기</a>
+    <input type="hidden" th:value="${detail.boNo}" id="currBoNo" />
+
+    <!--댓글 입력창-->
+    <div class="card mt-4 mb-4">
+        <div class="card-body">
+            <form id="commentForm" onsubmit="event.preventDefault(); fn_insertComm();">
+                <div class="form-group">
+                    <label for="commentContent">댓글</label>
+                    <textarea class="form-control" id="commentContent" name="commContent" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">댓글 작성</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!--댓글-->
+    <h6 class="mb-2">댓글목록</h6>
+    <div class="mb-4" id="commentArea">
+    </div>
+
+
+   
+</body>
+</html>

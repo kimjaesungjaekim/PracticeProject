@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}"
+      layout:fragment="content"
+>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- 포트원 결제 -->
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<!-- 포트원 결제 -->
+
+<!--스크립트 목록-->
+<script type="text/javascript" th:src="@{/js/app/payment/payment.js}"></script>
+</head>
+<body>
+
+
+    <div>
+    <p>카카오 페이 결제 모듈 테스트 해보기</p>
+    <button id="check_module" type="button">카카오 페이 결제 모듈 테스트 해보기</button>
+</div>
+
+	
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">구독신청하기</h1>
+    </div>
+
+	<div class="row">
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-4 col-md-6 mb-4" onclick="requestPayPremium()">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class=" font-weight-bold text-primary text-uppercase mb-1">
+                                프리미엄</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">월 요금 13,900원</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Annual) Card Example -->
+        <div class="col-xl-4 col-md-6 mb-4" onclick="requestPayStandard()">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class=" font-weight-bold text-success text-uppercase mb-1">
+                                스탠다드</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">월 요금 10,9000원</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tasks Card Example -->
+        <div class="col-xl-4 col-md-6 mb-4" onclick="requestPayBasic()">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class=" font-weight-bold text-info text-uppercase mb-1">베이직
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">월 요금 7,900원</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+</body>
+</html>
