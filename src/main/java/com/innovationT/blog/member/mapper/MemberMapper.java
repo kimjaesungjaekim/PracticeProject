@@ -2,6 +2,7 @@ package com.innovationT.blog.member.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -9,8 +10,8 @@ import com.innovationT.blog.member.entity.Member;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Mapper
 @Repository
+@Mapper
 public interface MemberMapper {
 	
 	/**
@@ -37,7 +38,10 @@ public interface MemberMapper {
 			+ "		FROM      MEMBER"
 			+ "		WHERE     MEM_LOGIN_ID = #{memLoginId}"
 			)
-	public Member selectUserInfo(String memLoginId);
+	public Member selectUserInfo(String username);
+	
+	@Select("SELECT * FROM MEMBER WHERE MEM_LOGIN_ID = #{userId}")
+	public Member selectUser(@Param("userId")String userId);
 	
 	/**
 	 * 회원가입

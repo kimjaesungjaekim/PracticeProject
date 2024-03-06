@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.innovationT.blog.member.entity.Member;
 
+@SuppressWarnings("serial")
 public class MemberPrincipalDetails implements UserDetails {
 	
 	private final Member member;
@@ -26,6 +27,7 @@ public class MemberPrincipalDetails implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> authorities = new ArrayList<>();
+		
 		authorities.add(new SimpleGrantedAuthority(member.getMemRole()));
 		
 		return authorities;

@@ -14,11 +14,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import com.innovationT.blog.security.auth.MemberPrincipalDetailService;
 import com.innovationT.blog.security.provider.MemberAuthenticatorProvider;
 
-import lombok.RequiredArgsConstructor;
-
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class MemberSecurityConfig {
 	
 	// 생성한 provider 주입 service 로직 처리 및 인증 처리
@@ -48,7 +45,7 @@ public class MemberSecurityConfig {
 		            authorize
 		                    .requestMatchers(
 		                    		new AntPathRequestMatcher("/login/loginForm"),
-		                    		new AntPathRequestMatcher("/login/**"),
+//		                    		new AntPathRequestMatcher("/login/**"),
 		                    		new AntPathRequestMatcher("/signUp/**"),
 		                            new AntPathRequestMatcher("/css/**"),
 		                            new AntPathRequestMatcher("/files/**"),
@@ -66,7 +63,7 @@ public class MemberSecurityConfig {
 		                        .defaultSuccessUrl("/board/boardList")
 		                        .usernameParameter("memLoginId")
 		                        .passwordParameter("memPw")
-//		                        .successHandler(new MemberAuthSuccessHandler()) 
+		                        .successHandler(new MemberAuthSuccessHandler()) 
 		                        .failureHandler(new MemberAuthFailureHandler())
 	                        .permitAll()
 		                    .and()
@@ -88,10 +85,10 @@ public class MemberSecurityConfig {
 		    return http.build();
 		    
 	}
-	
 	// 비밀번호 암호화
 	@Bean
 	public PasswordEncoder passwordEncoder() {
+		
 		return new BCryptPasswordEncoder();
 	}
 
